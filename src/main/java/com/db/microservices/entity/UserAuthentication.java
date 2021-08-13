@@ -3,8 +3,10 @@ package com.db.microservices.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="userauthentication")
 public class UserAuthentication {
 	@Id
 	@Column(name = "USER_NAME") //Username is gmail id
@@ -13,9 +15,17 @@ public class UserAuthentication {
 	private String firstname;
 	@Column(name = "LAST_NAME") //Username is gmail id
 	private String lastname;
-	@Column(name = "PASS_WORD")
-	private String password;
-	
+	//@Column(name = "PASS_WORD")
+	//private String password;
+	/*
+	@Column(name = "id") //Username is gmail id
+	private Long id;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}*/
 	
 	
 	public String getFirstname() {
@@ -35,12 +45,12 @@ public class UserAuthentication {
 	}
 	
 	
-	public String getPassword() {
+	/*public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
+	}*/
 	public void setUsername(String username) {
 		this.username = username;
 	}

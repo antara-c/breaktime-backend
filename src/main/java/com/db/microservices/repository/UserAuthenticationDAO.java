@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.db.microservices.entity.UserAuthentication;
 
-public interface UserAuthenticationDAO extends JpaRepository<UserAuthentication, Long> {
+public interface UserAuthenticationDAO extends JpaRepository<UserAuthentication, String> {
 
 }

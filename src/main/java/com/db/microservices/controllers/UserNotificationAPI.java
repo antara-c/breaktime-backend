@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "user")
+@RequestMapping(value = "usernotification")
 public class UserNotificationAPI {
 
 	@Autowired

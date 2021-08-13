@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "user")
+@RequestMapping(value = "userauthentication")
 public class UserAuthenticationAPI {
 
 	@Autowired
@@ -26,12 +26,14 @@ public class UserAuthenticationAPI {
 	@PostMapping
 	public @ResponseBody UserAuthentication createUser(@RequestBody UserAuthentication user) {
 		userAuthenticationDAO.save(user);
+		//user.setPassword(null);
 		return user;
 	}
 
-	@GetMapping(value = "/{id}")
-	public @ResponseBody UserAuthentication createUser(@PathVariable Long id) {
-		return userAuthenticationDAO.findById(id).get();
+	@GetMapping(value = "/{username}")
+	public @ResponseBody UserAuthentication createUser(@PathVariable String username) {
+		
+		return userAuthenticationDAO.findById(username).get();
 	}
 
 }

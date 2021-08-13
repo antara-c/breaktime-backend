@@ -3,8 +3,10 @@ package com.db.microservices.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="userinterests")
 public class UserInterests {
 	@Id
 	private Long id;

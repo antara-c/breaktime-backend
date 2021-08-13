@@ -14,18 +14,19 @@ import com.db.microservices.entity.UserInterests;
 import com.db.microservices.repository.UserInterestsDAO;
 
 import org.springframework.beans.factory.annotation.*;
-
+import java.util.*;
 
 @RestController
-@RequestMapping(value = "user")
+@RequestMapping(value = "userinterests")
 public class UserInterestsAPI {
 
 	@Autowired
 	private UserInterestsDAO userInterestsDAO;
 
 	@PostMapping
-	public @ResponseBody UserInterests createUser(@RequestBody UserInterests user) {
-		userInterestsDAO.save(user);
+	public @ResponseBody ArrayList<String> createUser(@RequestBody Map<String,ArrayList<String>> user) {
+		//userInterestsDAO.save(user);
+		userInterestsDAO.saveAll(user);
 		return user;
 	}
 

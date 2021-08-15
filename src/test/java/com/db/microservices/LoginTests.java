@@ -20,14 +20,14 @@ import com.db.microservices.entity.UserAuthentication;
 import com.db.microservices.repository.UserAuthenticationDAO;
 
 @SpringBootTest
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class LoginTests {
 	
 	@Autowired
 	UserAuthenticationAPI user;
 
-	@MockBean
-	UserAuthenticationDAO userAuthenticationDAO;
+	//@MockBean
+	//UserAuthenticationDAO userAuthenticationDAO;
 	
 	@Test
 	void usernameEmptyTest() {

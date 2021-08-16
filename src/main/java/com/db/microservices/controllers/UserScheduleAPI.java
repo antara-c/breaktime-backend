@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.db.microservices.entity.UserAuthentication;
 import com.db.microservices.entity.UserSchedule;
 import com.db.microservices.repository.UserScheduleDAO;
 
+@CrossOrigin(origins ="",allowedHeaders = "")
 @RestController
 @RequestMapping(value = "userschedule")
 public class UserScheduleAPI {
@@ -51,6 +53,7 @@ public class UserScheduleAPI {
 				throw new IllegalArgumentException();
 			}
 		}catch(Exception e) {
+			//System.out.println(e);
 			return new ResponseEntity<>("EmptyArguments", HttpStatus.NOT_FOUND);
 		}
 		

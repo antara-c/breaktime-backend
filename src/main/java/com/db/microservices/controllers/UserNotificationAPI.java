@@ -1,4 +1,5 @@
 package com.db.microservices.controllers;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.cloud.client.ServiceInstance;
 //import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-
+@CrossOrigin(origins ="",allowedHeaders = "")
 @RestController
 @RequestMapping(value = "usernotification")
 public class UserNotificationAPI {
@@ -56,21 +57,25 @@ public class UserNotificationAPI {
 		try {
 			if(username!=null && username.length()!=0) {
 				List<String> interests = userInterestsDAO.findByUsername(username);
+				
 				String interest="";
 				if(interests.size()==0) {
 					//send default notification
 					interest="default";
 					//throw new NullPointerException();
 				}
-				else{
-					interest = getRandomElement(interests);
-				}
+				
+				interest = getRandomElement(interests);
+				
+				//System.out.println(interest);
 				List<String> notifications =  userNotificationDAO.findByInterestName(interest);
+				//System.out.println(notifications);
 				if(notifications.size()==0) {
 					throw new NullPointerException();
 				}
 				String notification = getRandomElement(notifications);
 				UserSchedule schedule=userScheduleDAO.findById(username).get();
+				//System.out.println(schedule);
 				Map<String,String> map= new HashMap<>();
 				map.put("interest",interest);
 				map.put("notification", notification);
@@ -83,6 +88,7 @@ public class UserNotificationAPI {
 				throw new IllegalArgumentException();
 			}
 		}catch(Exception e) {
+			System.out.println("Exception"+e);
 			return new ResponseEntity<>("EmptyArguments", HttpStatus.NOT_FOUND);
 		}
 		

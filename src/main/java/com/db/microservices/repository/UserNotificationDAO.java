@@ -10,6 +10,6 @@ import com.db.microservices.entity.UserNotification;
 
 public interface UserNotificationDAO extends JpaRepository<UserNotification, Long> {
 
-	@Query("SELECT notification FROM UserNotification u  WHERE u.interestname = :interestName")
+	@Query("SELECT notification FROM UserNotification u  WHERE u.interestname = ?1")
     public List<String> findByInterestName(String interestName);
 }

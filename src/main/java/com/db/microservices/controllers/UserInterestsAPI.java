@@ -1,4 +1,5 @@
 package com.db.microservices.controllers;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.cloud.client.ServiceInstance;
 //import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
+@CrossOrigin(origins ="",allowedHeaders = "")
 @RestController
 @RequestMapping(value = "userinterests")
 public class UserInterestsAPI {

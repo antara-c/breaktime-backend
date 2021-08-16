@@ -1,4 +1,5 @@
 package com.db.microservices.controllers;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.cloud.client.ServiceInstance;
 //import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-
+@CrossOrigin(origins ="",allowedHeaders = "")
 @RestController
 @RequestMapping(value = "userauthentication")
 public class UserAuthenticationAPI {

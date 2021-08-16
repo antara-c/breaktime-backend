@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-@CrossOrigin(origins ="",allowedHeaders = "")
+@CrossOrigin(origins ="*",allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "userauthentication")
 public class UserAuthenticationAPI {

@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-@CrossOrigin(origins ="",allowedHeaders = "")
+@CrossOrigin(origins ="*",allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "usernotification")
 public class UserNotificationAPI {
@@ -57,16 +57,16 @@ public class UserNotificationAPI {
 		try {
 			if(username!=null && username.length()!=0) {
 				List<String> interests = userInterestsDAO.findByUsername(username);
-				
+				System.out.println(interests);
 				String interest="";
 				if(interests.size()==0) {
 					//send default notification
 					interest="default";
 					//throw new NullPointerException();
 				}
-				
+				else {
 				interest = getRandomElement(interests);
-				
+				}
 				//System.out.println(interest);
 				List<String> notifications =  userNotificationDAO.findByInterestName(interest);
 				//System.out.println(notifications);

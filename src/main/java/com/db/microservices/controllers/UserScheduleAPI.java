@@ -18,7 +18,7 @@ import com.db.microservices.entity.UserAuthentication;
 import com.db.microservices.entity.UserSchedule;
 import com.db.microservices.repository.UserScheduleDAO;
 
-@CrossOrigin(origins ="",allowedHeaders = "")
+@CrossOrigin(origins ="*",allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "userschedule")
 public class UserScheduleAPI {

@@ -23,7 +23,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
-@CrossOrigin(origins ="",allowedHeaders = "")
+@CrossOrigin(origins ="*",allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "userinterests")
 public class UserInterestsAPI {

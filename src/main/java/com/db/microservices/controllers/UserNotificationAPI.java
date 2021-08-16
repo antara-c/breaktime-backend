@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.db.microservices.entity.UserNotification;
+import com.db.microservices.entity.UserSchedule;
 import com.db.microservices.repository.UserInterestsDAO;
 import com.db.microservices.repository.UserNotificationDAO;
+import com.db.microservices.repository.UserScheduleDAO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +35,9 @@ public class UserNotificationAPI {
 	
 	@Autowired
 	private UserInterestsDAO userInterestsDAO;
+	 
+	@Autowired
+	private UserScheduleDAO userScheduleDAO;
 
 	@PostMapping
 	public ResponseEntity<?> createNotification(@RequestBody UserNotification user) {
@@ -51,18 +56,27 @@ public class UserNotificationAPI {
 		try {
 			if(username!=null && username.length()!=0) {
 				List<String> interests = userInterestsDAO.findByUsername(username);
+				String interest="";
 				if(interests.size()==0) {
-					throw new NullPointerException();
+					//send default notification
+					interest="default";
+					//throw new NullPointerException();
 				}
-				String interest = getRandomElement(interests);
+				else{
+					interest = getRandomElement(interests);
+				}
 				List<String> notifications =  userNotificationDAO.findByInterestName(interest);
 				if(notifications.size()==0) {
 					throw new NullPointerException();
 				}
 				String notification = getRandomElement(notifications);
+				UserSchedule schedule=userScheduleDAO.findById(username).get();
 				Map<String,String> map= new HashMap<>();
 				map.put("interest",interest);
 				map.put("notification", notification);
+				map.put("startTime", schedule.getStartTime());
+				map.put("endTime", schedule.getEndTime());
+				map.put("interval", Integer.toString(schedule.getInterval()));
 				return new ResponseEntity<>(map, HttpStatus.OK);
 			}
 			else {

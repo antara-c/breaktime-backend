@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.db.microservices.entity.UserAllInterests;
+import com.db.microservices.entity.UserAuthentication;
 import com.db.microservices.entity.UserInterests;
 import com.db.microservices.repository.UserInterestsDAO;
 
@@ -59,9 +60,21 @@ public class UserInterestsAPI {
 
 
 	@GetMapping(value = "/{userName}")
-	public List<String> getInterests(@PathVariable String userName) {
+	public ResponseEntity<?> getInterests(@PathVariable String userName) {
+		try {
+			if(userName!= null && userName.length()!=0) {
+				List<String> interests = userInterestsDAO.findByUsername(userName);
+				return new ResponseEntity<>(interests, HttpStatus.OK);
+				
+			}else {
+				throw new IllegalArgumentException();
+			}
+		}catch(Exception e) {
+			return new ResponseEntity<>("EmptyArguments", HttpStatus.NOT_FOUND);
+		}
 		//System.out.println(userName);
-		return userInterestsDAO.findByUsername(userName);
+		
+		//return userInterestsDAO.findByUsername(userName);
 	}
 
 }

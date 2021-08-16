@@ -27,6 +27,7 @@ public class UserAllInterests {
 	public void setInterestname(ArrayList<String> interestname) {
 		this.interestname = interestname;
 	}
+	
 	@Override
 	public String toString() {
 		return "UserAllInterests [username=" + username + ", interestname=" + interestname + "]";
